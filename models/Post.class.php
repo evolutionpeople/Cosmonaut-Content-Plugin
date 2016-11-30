@@ -34,20 +34,18 @@ class Post
     public function __construct($post)
     {
         $post = get_post($post);
-
         if (!$post) {
             return null;
         }
-
-        $this->ID = $post->ID;
-        $this->menu_order = intval($post->menu_order);
-        $this->post_date = $post->post_date;
-        $this->post_status = $post->post_status;
-        $this->post_title = $post->post_title;
-        $this->post_name = $post->post_name;
-        $this->post_type = get_post_type($this->ID);
-        $this->content = apply_filters('the_content',$post->post_content);
-        $this->permalink = get_the_permalink($this->ID);
+        $this->ID           = $post->ID;
+        $this->menu_order   = intval($post->menu_order);
+        $this->post_date    = $post->post_date;
+        $this->post_status  = $post->post_status;
+        $this->post_title   = $post->post_title;
+        $this->post_name    = $post->post_name;
+        $this->post_type    = get_post_type($this->ID);
+        $this->content      = apply_filters('the_content',$post->post_content);
+        $this->permalink    = get_the_permalink($this->ID);
         if(strlen($post->post_excerpt) > $this->excerpt_length)
         {
             $excerpt = preg_replace('/\s+?(\S+)?$/', '', substr($post->post_excerpt, 0, $this->excerpt_length+1)).' ...';
@@ -63,6 +61,12 @@ class Post
         }
 
         $this->taxonomies = get_object_taxonomies($this->post_type);
+
+        if(gettype($this->taxonomies) !== 'array')
+        {
+            $this->taxonomies = [];
+        }
+
         $this->fields = $this->get_object_fields();
     }
 
@@ -72,43 +76,44 @@ class Post
      */
     public function withDetails()
     {
+        if(!empty($this->ID))
+        {
+            if (!$this->allDetailsFetched) {
+                foreach ($this->taxonomies as $tax) {
+                    $terms = wp_get_post_terms($this->ID, $tax);
 
-        if (!$this->allDetailsFetched) {
-            foreach ($this->taxonomies as $tax) {
-                $terms = wp_get_post_terms($this->ID, $tax);
+                    $termArray = [];
+                    foreach ($terms as $term) {
+                        $termArray[] = new Detail($term);
+                    }
 
-                $termArray = [];
-                foreach ($terms as $term) {
-                    $termArray[] = new Detail($term);
+                    if(count($termArray) == 0){
+                        $this->$tax = null;
+                    }elseif(count($termArray) == 1){
+                        $this->$tax = $termArray[0];
+                    }else{
+                        $this->$tax = $termArray;
+                    }
                 }
-
-                if(count($termArray) == 0){
-                    $this->$tax = null;
-                }elseif(count($termArray) == 1){
-                    $this->$tax = $termArray[0];
-                }else{
-                    $this->$tax = $termArray;
-                }
-            }
-            if(function_exists('get_fields'))
-            {
-                $fields = get_fields($this->ID);
-                if(count($fields) > 0 && $fields)
+                if(function_exists('get_fields'))
                 {
-                    foreach ($fields as $key => $field) {
-                        $fieldArray = new Detail($field);
-                        $this->$key = $fieldArray;
+                    $fields = get_fields($this->ID);
+                    if(count($fields) > 0 && $fields)
+                    {
+                        foreach ($fields as $key => $field) {
+                            $fieldArray = new Detail($field);
+                            $this->$key = $fieldArray;
 
-                        if (method_exists($this, $key)) {
-                            $this->$key();
+                            if (method_exists($this, $key)) {
+                                $this->$key();
+                            }
                         }
                     }
                 }
+                return $this;
             }
-
-
-            return $this;
         }
+
     }
 
     /**
