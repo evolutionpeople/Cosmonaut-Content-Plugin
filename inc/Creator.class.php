@@ -9,7 +9,7 @@
 *  @subpackage	Content
 */
 namespace Cosmonaut\Content;
-
+require_once 'Model.class.php';
 class Creator
 {
     protected $posts;
@@ -114,6 +114,8 @@ class Creator
         foreach ($this->posts as $name => $post_info) {
             $post_info['labels'] = $this->create_post_type_label(isset($post_info['labels']['singular']) ? $post_info['labels']['singular'] : $name, isset($post_info['labels']['plural']) ? $post_info['labels']['plural'] : $name, isset($post_info['labels']['gender']) ? $post_info['labels']['gender'] : 'm');
             register_post_type($name, $post_info);
+            $model = new Model($post_info['labels']['singular_name']);
+            $model->generate();
         }
     }
 
