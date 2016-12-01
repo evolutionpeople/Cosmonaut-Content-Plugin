@@ -20,8 +20,8 @@ class Creator
      */
     public function __construct()
     {
-        $this->posts = include BLP_PLUGIN_PATH . 'config/posts.php';
-        $this->taxonomies = include BLP_PLUGIN_PATH . 'config/taxonomies.php';
+        $this->posts = include COSMO_PLUGIN_PATH . 'config/posts.php';
+        $this->taxonomies = include COSMO_PLUGIN_PATH . 'config/taxonomies.php';
         $this->create_custom_post_type();
         $this->create_custom_taxonomy();
     }

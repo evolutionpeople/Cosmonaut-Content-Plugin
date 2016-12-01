@@ -10,10 +10,10 @@ class Model
 
     function generate()
     {
-        $model = BLP_PLUGIN_PATH.'models/'.$this->name.'.class.php';
+        $model = COSMO_PLUGIN_PATH.'models/'.$this->name.'.class.php';
         if(!file_exists($model))
         {
-            $template = BLP_PLUGIN_PATH.'config/model-base.txt';
+            $template = COSMO_PLUGIN_PATH.'config/model-base.txt';
             $current = file_get_contents($template);
             $current = preg_replace('/{NAME}/i',$this->name,$current);
             $current = preg_replace('/{DATE}/',date('Y-m-d H:i:s',time()),$current);

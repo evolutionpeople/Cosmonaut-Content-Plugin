@@ -8,7 +8,7 @@ class Rewriter
 
     public function __construct()
     {
-        $config = include BLP_PLUGIN_PATH . 'config/rewrites.php';
+        $config = include COSMO_PLUGIN_PATH . 'config/rewrites.php';
         $this->add_rules        = $config['add_rules'];
         $this->remove_rules     = implode('|',$config['remove_rules']);
         $this->remove_rewrites  = implode('|',$config['remove_rewrites']);

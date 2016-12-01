@@ -13,12 +13,12 @@ use Cosmonaut\Content\Rewriter;
 
 if(!defined( 'ABSPATH' ) ) exit;
 
-if(!defined('BLP_PLUGIN_PATH'))
-    define('BLP_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
+if(!defined('COSMO_PLUGIN_PATH'))
+    define('COSMO_PLUGIN_PATH', plugin_dir_path( __FILE__ ));
 
 
 
-//require_once BLP_PLUGIN_PATH.'vendor/autoload.php';
+//require_once COSMO_PLUGIN_PATH.'vendor/autoload.php';
 
 
 
@@ -47,10 +47,10 @@ class Cosmonaut {
         // bail early if a plugin called get_field early
         if( !did_action('plugins_loaded') ) return;
 
-        require_once BLP_PLUGIN_PATH.'inc/Creator.class.php';
+        require_once COSMO_PLUGIN_PATH.'inc/Creator.class.php';
         new Creator();
 
-        require_once BLP_PLUGIN_PATH.'inc/Rewriter.class.php';
+        require_once COSMO_PLUGIN_PATH.'inc/Rewriter.class.php';
         new Rewriter();
 
         spl_autoload_register([$this,'autoload']);
@@ -64,7 +64,7 @@ class Cosmonaut {
             switch ($params[1])
             {
                 case 'Models':
-                    require_once BLP_PLUGIN_PATH.'models/'.$params[2].'.class.php';
+                    require_once COSMO_PLUGIN_PATH.'models/'.$params[2].'.class.php';
                     break;
             }
         }

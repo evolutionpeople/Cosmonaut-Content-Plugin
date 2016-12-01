@@ -14,7 +14,7 @@ trait Social
     protected $social;
     private function config()
     {
-        return $this->social = include BLP_PLUGIN_PATH . 'config/socialnetworks.php';
+        return $this->social = include COSMO_PLUGIN_PATH . 'config/socialnetworks.php';
     }
 
     public function socialNetworks(PostInterface $post)
