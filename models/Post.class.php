@@ -1,6 +1,7 @@
 <?php
 namespace Cosmonaut\Models;
-
+require_once 'PostInterface.interface.php';
+require_once 'Social.trait.php';
 /**
  * @property integer $ID Post ID
  * @property integer $menu_order Post menu order
@@ -15,9 +16,11 @@ namespace Cosmonaut\Models;
  * @property boolean $has_thumbnail If Post Has Thumbnail
  * @property array $taxonomies Array of possible taxonomies
  * @property array $fields Array of possible ACF
+ * @property array|null $share Array of social share urls and params
  */
-class Post
+class Post implements PostInterface
 {
+    use Social;
     /**
      * @var bool
      * true if all details have been fetched
@@ -66,7 +69,7 @@ class Post
         {
             $this->taxonomies = [];
         }
-
+        $this->share = $this->socialNetworks($this);
         $this->fields = $this->get_object_fields();
     }
 
