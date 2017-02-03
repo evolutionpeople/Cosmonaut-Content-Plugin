@@ -8,23 +8,23 @@ return [
      *
     */
     'offer' => [
-        'labels' => [
-            'singular'  => _x('offer', 'boilerplate-cpt', 'cosmonaut'),
-            'plural'    => _x('offers', 'boilerplate-cpt', 'cosmonaut'),
-            'gender'    => 'f'
+        'labels'             => [
+            'singular' => _x('offer', 'boilerplate-cpt', 'cosmonaut'),
+            'plural'   => _x('offers', 'boilerplate-cpt', 'cosmonaut'),
+            'gender'   => 'f'
         ],
-        'supports'              => ['title', 'thumbnail','editor', 'page-attributes','revisions'],
-        'menu_position'         => 10,
-        'menu_icon'             => 'dashicons-star-filled',
-        'public'                => true,
-        'publicly_queryable'    => true,
-        'show_ui'               => true,
-        'show_in_menu'          => true,
-        'query_var'             => true,
-        'rewrite' => [
-            'slug'              => _x('offers','boilerplate-cpt','cosmonaut')
+        'supports'           => ['title', 'thumbnail', 'editor', 'page-attributes', 'revisions'],
+        'menu_position'      => 10,
+        'menu_icon'          => 'dashicons-star-filled',
+        'public'             => TRUE,
+        'publicly_queryable' => TRUE,
+        'show_ui'            => TRUE,
+        'show_in_menu'       => TRUE,
+        'query_var'          => TRUE,
+        'rewrite'            => [
+            'slug' => _x('offers', 'boilerplate-cpt', 'cosmonaut')
         ],
-        'has_archive'           => false,
-        'hierarchical'          => false
+        'has_archive'        => FALSE,
+        'hierarchical'       => FALSE
     ]
 ];

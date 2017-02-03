@@ -9,11 +9,11 @@ return [
      *
     */
     'facebook' => [
-        'icon'              => 'fa-facebook',
-        'app_id'            => '123456789',
-        'base_share_url'    => 'https://www.facebook.com/dialog/share?app_id={APP_ID}&display=popup&href={URL}'
+        'icon'           => 'fa-facebook',
+        'app_id'         => '123456789',
+        'base_share_url' => 'https://www.facebook.com/dialog/share?app_id={APP_ID}&display=popup&href={URL}'
     ],
     'twitter'  => [
-        'base_share_url'    => 'https://twitter.com/intent/tweet?text={TEXT}&url={URL}'
+        'base_share_url' => 'https://twitter.com/intent/tweet?text={TEXT}&url={URL}'
     ]
 ];
