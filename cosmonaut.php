@@ -59,9 +59,9 @@ class Cosmonaut {
 
     public static function autoload($namespace)
     {
-        $splitpath = explode('\\', $namespace);
+        $splitname = explode('\\', $namespace);
 
-        $filename = implode('/', $splitpath);
+        $filename = implode(DIRECTORY_SEPARATOR, $splitname);
 
         if (file_exists(COSMO_PLUGIN_PATH . $filename . '.php'))
         {
