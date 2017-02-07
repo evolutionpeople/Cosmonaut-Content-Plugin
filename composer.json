@@ -1,0 +1,12 @@
+{
+    "name": "evolutionpeople/cosmonaut",
+    "description": "Cosmonaut is a framework",
+    "authors": [
+        {
+            "name": "Evolution People",
+            "email": "support@evolutionpeople.it"
+        }
+    ],
+    "require": {
+    }
+}
