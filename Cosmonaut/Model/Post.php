@@ -1,8 +1,5 @@
 <?php
 namespace Cosmonaut\Model;
-/*require_once 'PostInterface.interface.php';
-require_once 'Social.trait.php';*/
-
 /**
  * @property integer    $ID Post ID
  * @property integer    $menu_order Post menu order

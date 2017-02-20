@@ -54,10 +54,10 @@ class Cosmonaut {
 
         new Rewriter();
 
-        spl_autoload_register([$this, 'autoload']);
+        //spl_autoload_register([$this, 'autoload']);
     }
 
-    public static function autoload($namespace)
+    /*public static function autoload($namespace)
     {
         $splitname = explode('\\', $namespace);
 
@@ -67,10 +67,10 @@ class Cosmonaut {
         {
             require_once COSMO_PLUGIN_PATH . $filename . '.php';
         }
-    }
+    }*/
 }
 
-spl_autoload_register(__NAMESPACE__ . "\\Cosmonaut::autoload");
+//spl_autoload_register(__NAMESPACE__ . "\\Cosmonaut::autoload");
 
 function cosmonaut()
 {

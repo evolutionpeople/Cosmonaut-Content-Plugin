@@ -1,12 +1,16 @@
 {
     "name": "evolutionpeople/cosmonaut",
-    "description": "Cosmonaut is a framework",
+    "description": "Cosmonaut is a wrapper for Wordpress",
     "authors": [
         {
             "name": "Evolution People",
             "email": "support@evolutionpeople.it"
         }
     ],
-    "require": {
-    }
+    "autoload": {
+        "psr-4": {
+            "Cosmonaut\\": "Cosmonaut/"
+        }
+    },
+    "require": {}
 }
